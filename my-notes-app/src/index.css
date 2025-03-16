@@ -95,6 +95,14 @@ textarea:focus {
   color: red;
 }
 
+.edit-icon {
+	cursor: pointer;
+}
+
+.edit-icon:hover {
+  color: orange;
+}
+
 .search {
 	display: flex;
 	align-items: center;

@@ -13,7 +13,7 @@ const App = () => {
 		},
 		{
 			id: nanoid(),
-			text: 'Вторая заметка',
+			text: 'Вторая...',
 			date: '21/04/2021',
 		},
 	]);
@@ -24,7 +24,7 @@ const App = () => {
 
 	useEffect(() => {
 		const savedNotes = JSON.parse(
-			localStorage.getItem('my-notes-app-data')
+			localStorage.getItem('react-notes-app-data')
 		);
 
 		if (savedNotes) {
@@ -34,7 +34,7 @@ const App = () => {
 
 	useEffect(() => {
 		localStorage.setItem(
-			'my-notes-app-data',
+			'react-notes-app-data',
 			JSON.stringify(notes)
 		);
 	}, [notes]);
@@ -55,6 +55,14 @@ const App = () => {
 		setNotes(newNotes);
 	};
 
+  const editNote = (id, newText) => {
+    const newNotes = notes.map((note) =>
+        note.id === id ? { ...note, text: newText } : note
+    );
+    setNotes(newNotes);
+};
+  
+
 	return (
 		<div className={`${darkMode && 'dark-mode'}`}>
 			<div className='container'>
@@ -65,6 +73,7 @@ const App = () => {
 						note.text.toLowerCase().includes(searchText)
 					)}
 					handleAddNote={addNote}
+          handleEditNote={editNote}
 					handleDeleteNote={deleteNote}
 				/>
 			</div>
